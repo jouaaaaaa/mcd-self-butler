@@ -1,0 +1,518 @@
+{
+  "9900011128": {
+    "success": true,
+    "code": 200,
+    "message": "请求成功",
+    "datetime": "2026-10-24 12:09:45",
+    "note": "query-meal-detail 真实响应，modification（特调选项）子树已裁剪以避免文件臃肿，不影响 rounds/isDefault 的健康拆解。",
+    "data": {
+      "code": "9900011128",
+      "name": "“堡”你欢乐套餐",
+      "supportModify": false,
+      "image": "https://menu-img.mcd.cn/pcm/prod/menu/ProductPool/product/MS_9900011128_600.png",
+      "rounds": [
+        {
+          "id": 1,
+          "name": "汉堡包",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "1000",
+              "name": "汉堡包",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "麦乐鸡4块",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "515106",
+              "name": "麦乐鸡4块",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "苹果片一袋(60g)",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "6102",
+              "name": "苹果片一袋(60g)",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "选择饮料",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "3071",
+              "name": "无糖可口可乐中杯",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            },
+            {
+              "code": "3021",
+              "name": "无糖可口可乐小杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥0.5",
+              "supportModify": true
+            },
+            {
+              "code": "3111",
+              "name": "无糖可口可乐大杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥2",
+              "supportModify": true
+            },
+            {
+              "code": "3505",
+              "name": "锡兰红茶",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥1.5",
+              "supportModify": false
+            },
+            {
+              "code": "3757",
+              "name": "纯悦",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥2.5",
+              "supportModify": false
+            },
+            {
+              "code": "507368",
+              "name": "麦咖啡™热美式中杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥9",
+              "supportModify": true
+            },
+            {
+              "code": "507411",
+              "name": "麦咖啡™冰美式中杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥9",
+              "supportModify": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "9900011121": {
+    "success": true,
+    "code": 200,
+    "message": "请求成功",
+    "datetime": "2026-10-24 12:17:03",
+    "note": "query-meal-detail 真实响应，modification 子树已裁剪。",
+    "data": {
+      "code": "9900011121",
+      "name": "“苹”水相“鱼”套餐",
+      "supportModify": false,
+      "rounds": [
+        {
+          "id": 1,
+          "name": "麦香鱼",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "1600",
+              "name": "麦香鱼",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "小杯玉米杯",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "4437",
+              "name": "小杯玉米杯",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "苹果片一袋(60g)",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "6102",
+              "name": "苹果片一袋(60g)",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "选择饮料",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "3505",
+              "name": "锡兰红茶",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            },
+            {
+              "code": "3071",
+              "name": "无糖可口可乐中杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥1.5",
+              "supportModify": true
+            },
+            {
+              "code": "3111",
+              "name": "无糖可口可乐大杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥0.5",
+              "supportModify": true
+            },
+            {
+              "code": "3757",
+              "name": "纯悦",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥4",
+              "supportModify": false
+            },
+            {
+              "code": "507368",
+              "name": "麦咖啡™热美式中杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥7.5",
+              "supportModify": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "9900009245": {
+    "success": true,
+    "code": 200,
+    "message": "请求成功",
+    "datetime": "2026-10-24 12:17:03",
+    "note": "query-meal-detail 真实响应，modification 子树已裁剪。",
+    "data": {
+      "code": "9900009245",
+      "name": "牛气满满套餐",
+      "supportModify": false,
+      "rounds": [
+        {
+          "id": 1,
+          "name": "培根蔬萃双层牛堡",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "1106",
+              "name": "培根蔬萃双层牛堡",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "小杯玉米杯",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "4437",
+              "name": "小杯玉米杯",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "选择饮料",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "3071",
+              "name": "无糖可口可乐中杯",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            },
+            {
+              "code": "3021",
+              "name": "无糖可口可乐小杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥0.5",
+              "supportModify": true
+            },
+            {
+              "code": "3505",
+              "name": "锡兰红茶",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥1.5",
+              "supportModify": false
+            },
+            {
+              "code": "3757",
+              "name": "纯悦",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥2.5",
+              "supportModify": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "9900005466": {
+    "success": true,
+    "code": 200,
+    "message": "请求成功",
+    "datetime": "2026-10-24 12:18:34",
+    "note": "query-meal-detail 真实响应，modification 子树已裁剪。三件套 = 巨无霸 + 中薯条 + 可乐中杯。",
+    "data": {
+      "code": "9900005466",
+      "name": "巨无霸三件套",
+      "supportModify": false,
+      "rounds": [
+        {
+          "id": 1,
+          "name": "新升级巨无霸",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "1100",
+              "name": "巨无霸",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "选择套餐内小食",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "4810",
+              "name": "中薯条",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": false
+            },
+            {
+              "code": "521983",
+              "name": "5块心形薯饼+韩式辣椒黄油风味酱",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥1",
+              "supportModify": false
+            },
+            {
+              "code": "521901",
+              "name": "月下相思扭扭薯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥1.5",
+              "supportModify": false
+            },
+            {
+              "code": "4820",
+              "name": "大薯条",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥2.5",
+              "supportModify": false
+            },
+            {
+              "code": "4437",
+              "name": "小杯玉米杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "- ¥0.5",
+              "supportModify": false
+            },
+            {
+              "code": "4438",
+              "name": "大杯玉米杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥2.5",
+              "supportModify": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "选择套餐内饮料",
+          "quantity": 1,
+          "maxQuantity": 1,
+          "minQuantity": 1,
+          "choices": [
+            {
+              "code": "3050",
+              "name": "可乐中杯",
+              "quantity": 1,
+              "maxQuantity": -1,
+              "isDefault": 1,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            },
+            {
+              "code": "3071",
+              "name": "无糖可口可乐中杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            },
+            {
+              "code": "3060",
+              "name": "雪碧中杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥0",
+              "supportModify": true
+            },
+            {
+              "code": "4437",
+              "name": "小杯玉米杯",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥0.5",
+              "supportModify": false
+            },
+            {
+              "code": "3755",
+              "name": "纯牛奶",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥0.5",
+              "supportModify": false
+            },
+            {
+              "code": "3505",
+              "name": "锡兰红茶",
+              "quantity": 0,
+              "maxQuantity": -1,
+              "isDefault": 0,
+              "diffPrice": "+ ¥1.5",
+              "supportModify": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

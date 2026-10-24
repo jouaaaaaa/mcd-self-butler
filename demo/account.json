@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "code": 200,
+  "message": "请求成功",
+  "datetime": "2026-10-24 12:09:38",
+  "data": {
+    "availablePoint": "1204.8",
+    "accountId": "020026*******************2516",
+    "accumulativePoint": "4304.8",
+    "currency": "麦享会积分",
+    "currentMouthExpirePoint": "171",
+    "expiredPoint": "0",
+    "frozenPoint": "0",
+    "lastMouthExpirePoint": "0",
+    "nextMouthExpirePoint": "0",
+    "usedPoint": "3100"
+  },
+  "_desensitized": "accountId 已脱敏；积分数值为真实值。"
+}

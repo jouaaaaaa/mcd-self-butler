@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-10-24 12:14:56",
+  "basket": {"productCode": "9900005466", "name": "巨无霸三件套", "quantity": 1},
+  "note": "distance/storeCode 来自 query-nearby-stores（单位：米）；price 为逐店调用 calculate-price 后 productPrice/100 的真实结果（同一份巨无霸三件套，不同门店确实不同价：36.5 / 37.0）；waitMinutes 为示例排队时长，真实场景由门店忙碌度或现场观察填入。",
+  "stores": [
+    {"storeCode": "1450118", "storeName": "麦当劳上海吴江路餐厅", "address": "吴江路169号四季坊B1楼B101号铺（近南京西路地铁站3号出口）", "distance": 234, "price": 36.5, "waitMinutes": 18, "open": true},
+    {"storeCode": "1450403", "storeName": "麦当劳上海静安锦沧文华餐厅", "address": "南京西路1225号", "distance": 548, "price": 36.5, "waitMinutes": 4, "open": true},
+    {"storeCode": "1450422", "storeName": "麦当劳上海西康路冠生园餐厅", "address": "西康路301号", "distance": 1006, "price": 37.0, "waitMinutes": 3, "open": true},
+    {"storeCode": "1450586", "storeName": "麦当劳上海仙乐斯餐厅", "address": "南京西路388号仙乐斯广场麦当劳", "distance": 1011, "price": 36.5, "waitMinutes": 6, "open": true},
+    {"storeCode": "1450434", "storeName": "麦当劳上海静安江宁路时美大厦餐厅", "address": "江宁路445号1楼106", "distance": 1026, "price": 37.0, "waitMinutes": 2, "open": true}
+  ]
+}

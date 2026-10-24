@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "code": 200,
+  "message": "请求成功",
+  "datetime": "2026-10-24 12:18:34",
+  "note": "query-meal-detail 真实响应，modification 子树已裁剪。三件套 = 巨无霸 + 中薯条 + 可乐中杯。",
+  "data": {
+    "code": "9900005466",
+    "name": "巨无霸三件套",
+    "supportModify": false,
+    "rounds": [
+      {"id": 1, "name": "新升级巨无霸", "quantity": 1, "maxQuantity": 1, "minQuantity": 1,
+       "choices": [{"code": "1100", "name": "巨无霸", "quantity": 1, "maxQuantity": -1, "isDefault": 1, "diffPrice": "+ ¥0", "supportModify": true}]},
+      {"id": 2, "name": "选择套餐内小食", "quantity": 1, "maxQuantity": 1, "minQuantity": 1,
+       "choices": [
+         {"code": "4810", "name": "中薯条", "quantity": 1, "maxQuantity": -1, "isDefault": 1, "diffPrice": "+ ¥0", "supportModify": false},
+         {"code": "521983", "name": "5块心形薯饼+韩式辣椒黄油风味酱", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥1", "supportModify": false},
+         {"code": "521901", "name": "月下相思扭扭薯", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥1.5", "supportModify": false},
+         {"code": "4820", "name": "大薯条", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥2.5", "supportModify": false},
+         {"code": "4437", "name": "小杯玉米杯", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "- ¥0.5", "supportModify": false},
+         {"code": "4438", "name": "大杯玉米杯", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥2.5", "supportModify": false}
+       ]},
+      {"id": 3, "name": "选择套餐内饮料", "quantity": 1, "maxQuantity": 1, "minQuantity": 1,
+       "choices": [
+         {"code": "3050", "name": "可乐中杯", "quantity": 1, "maxQuantity": -1, "isDefault": 1, "diffPrice": "+ ¥0", "supportModify": true},
+         {"code": "3071", "name": "无糖可口可乐中杯", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥0", "supportModify": true},
+         {"code": "3060", "name": "雪碧中杯", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥0", "supportModify": true},
+         {"code": "4437", "name": "小杯玉米杯", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥0.5", "supportModify": false},
+         {"code": "3755", "name": "纯牛奶", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥0.5", "supportModify": false},
+         {"code": "3505", "name": "锡兰红茶", "quantity": 0, "maxQuantity": -1, "isDefault": 0, "diffPrice": "+ ¥1.5", "supportModify": false}
+       ]}
+    ]
+  }
+}

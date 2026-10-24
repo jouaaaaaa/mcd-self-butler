@@ -1,0 +1,55 @@
+{
+  "title": "麦当劳自助管家 · 麦门小剧场",
+  "user": "麦友",
+  "meal": "午餐",
+  "budget": 40,
+  "credit": {
+    "score": 771,
+    "tier": "巨无霸级",
+    "limit": 120
+  },
+  "coupons": [
+    "11.9元麦辣鸡腿堡",
+    "19.9元王牌炸鸡任选2"
+  ],
+  "candidates": [
+    {
+      "name": "“苹”水相“鱼”套餐",
+      "price": 36.0,
+      "kcal": 412,
+      "health": 91
+    },
+    {
+      "name": "牛气满满套餐",
+      "price": 35.0,
+      "kcal": 495,
+      "health": 81
+    },
+    {
+      "name": "芝士安格斯厚牛堡",
+      "price": 31.5,
+      "kcal": 696,
+      "health": 74
+    },
+    {
+      "name": "人气超值四件套随心选",
+      "price": 28.0,
+      "kcal": 649,
+      "health": 70
+    },
+    {
+      "name": "鱼牛汉堡四件套随心选",
+      "price": 32.0,
+      "kcal": 649,
+      "health": 70
+    }
+  ],
+  "winner": {
+    "name": "“苹”水相“鱼”套餐",
+    "price": 36.0,
+    "kcal": 412,
+    "health": 91,
+    "reason": "实测热量最低且营养结构最稳"
+  },
+  "saved": 6.5
+}

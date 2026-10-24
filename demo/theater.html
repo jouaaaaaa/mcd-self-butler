@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>麦门小剧场 · 麦当劳自助管家 · 麦门小剧场</title>
+<style>
+  :root{
+    --red:#DA291C; --yellow:#FFC72C; --ink:#12121a; --paper:#fffdf7;
+    --dim:#a9a4b8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; color:#fff;
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+    background:
+      radial-gradient(900px 520px at 18% -8%, rgba(218,41,28,.55), transparent 62%),
+      radial-gradient(760px 460px at 88% 4%, rgba(255,199,44,.28), transparent 60%),
+      linear-gradient(170deg,#141019 0%,#1d1420 46%,#120e16 100%);
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 20px 54px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+  .title{font-size:15px;letter-spacing:.24em;color:var(--yellow);text-transform:uppercase}
+  .title b{display:block;font-size:26px;letter-spacing:.06em;color:#fff;margin-top:6px}
+  .scorecard{
+    background:linear-gradient(135deg,rgba(255,199,44,.16),rgba(218,41,28,.18));
+    border:1px solid rgba(255,199,44,.34); border-radius:16px; padding:10px 16px;
+    display:flex;align-items:center;gap:14px
+  }
+  .scorecard .num{font-size:26px;font-weight:800;color:var(--yellow);line-height:1}
+  .scorecard .cap{font-size:11px;color:var(--dim);letter-spacing:.12em}
+  .stage{
+    position:relative;border-radius:24px;padding:22px 22px 18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 30px 70px -40px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.12);
+    overflow:hidden;
+  }
+  .lights{position:absolute;inset:0 0 auto 0;height:4px;
+    background:repeating-linear-gradient(90deg,var(--yellow) 0 14px,transparent 14px 28px);opacity:.5}
+  .cast{display:flex;justify-content:space-between;gap:6px;margin:10px 0 6px}
+  .actor{width:19%;text-align:center;opacity:.42;transform:translateY(0);transition:opacity .3s,transform .3s;filter:saturate(.5)}
+  .actor.on{opacity:1;transform:translateY(-6px);filter:none}
+  .avatar{width:100%;max-width:108px;height:auto;display:block;margin:0 auto}
+  .actor.on .avatar{animation:bob .62s ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+  .actor .name{font-size:13px;margin-top:6px;font-weight:700;color:#fff}
+  .actor .role{font-size:10px;color:var(--dim);letter-spacing:.08em}
+  .mouth{display:none}
+  .actor[data-mood="idle"] .m-idle,
+  .actor[data-mood="happy"] .m-happy,
+  .actor[data-mood="angry"] .m-angry{display:block}
+
+  .bubble{
+    margin-top:14px;min-height:118px;border-radius:18px;padding:18px 20px;
+    background:var(--paper);color:#1a1418;position:relative;font-size:17px;line-height:1.7;
+    box-shadow:0 18px 34px -24px rgba(0,0,0,.9);
+  }
+  .bubble .who{font-size:12px;font-weight:800;letter-spacing:.14em;margin-bottom:7px;display:block}
+  .bubble:after{
+    content:"";position:absolute;top:-10px;left:var(--tail,40px);transform:translateX(-50%);opacity:0;
+    border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:11px solid var(--paper);
+    transition:left .32s cubic-bezier(.2,.9,.3,1),opacity .18s
+  }
+  .bubble.talking:after{opacity:1}
+  .cursor{display:inline-block;width:8px;height:17px;background:var(--red);vertical-align:-3px;animation:blink .8s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  .log{margin-top:14px;max-height:190px;overflow:auto;display:flex;flex-direction:column;gap:7px;padding-right:4px}
+  .log::-webkit-scrollbar{width:6px}
+  .log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:99px}
+  .log .row{font-size:13px;line-height:1.6;color:#cfc9dc}
+  .log .row b{margin-right:6px}
+
+  .verdict{
+    margin-top:16px;border-radius:20px;padding:18px 20px;display:none;
+    background:linear-gradient(135deg,rgba(255,199,44,.95),rgba(255,164,44,.92));
+    color:#231a06;box-shadow:0 24px 44px -28px rgba(255,199,44,.8)
+  }
+  .verdict.show{display:block;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+  .verdict h3{margin:0 0 6px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+  .verdict .pick{font-size:22px;font-weight:800;margin-bottom:10px}
+  .verdict .grid{display:flex;gap:22px;flex-wrap:wrap;font-size:13px}
+  .verdict .grid div span{display:block;font-size:11px;opacity:.62;letter-spacing:.1em}
+
+  .controls{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
+  button{
+    appearance:none;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);
+    color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;cursor:pointer;
+    transition:background .2s,transform .1s;font-family:inherit
+  }
+  button:hover{background:rgba(255,255,255,.16)}
+  button:active{transform:scale(.97)}
+  button.primary{background:var(--red);border-color:transparent;font-weight:700}
+  .hint{font-size:12px;color:var(--dim);margin-left:auto}
+  .confetti{position:absolute;width:8px;height:8px;border-radius:2px;pointer-events:none;animation:fall 1.6s linear forwards}
+  @keyframes fall{to{transform:translateY(320px) rotate(320deg);opacity:0}}
+  @media (max-width:640px){
+    .bubble{font-size:15px;min-height:104px}
+    .actor .role{display:none}
+    .title b{font-size:21px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="title">McButler Theater<b>就为这一单，吵一架</b></div>
+    <div class="scorecard">
+      <div><div class="cap">麦险分</div><div class="num" id="mc-score">771</div></div>
+      <div><div class="cap">等级</div><div style="font-weight:700" id="mc-tier">巨无霸级</div></div>
+      <div><div class="cap">额度</div><div style="font-weight:700">¥120</div></div>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="lights"></div>
+    <div class="cast" id="cast">
+<div class="actor" data-id="uncle" data-mood="idle">
+<svg class="avatar" viewBox="0 0 120 148" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-uncle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFC72C" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#DA291C" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="138" rx="30" ry="5.5" fill="#000" opacity="0.22"/>
+  <rect x="31" y="70" width="58" height="62" rx="24" fill="url(#g-uncle)"/>
+  <path d="M46 104 q14 12 28 0" stroke="#7a1109" stroke-width="4" fill="none" stroke-linecap="round" opacity=".5"/>
+  <circle cx="60" cy="48" r="29" fill="#FFD9A0"/>
+  <circle cx="49" cy="47" r="4" fill="#20140f"/>
+  <circle cx="71" cy="47" r="4" fill="#20140f"/>
+  <path class="mouth m-idle" d="M53 60 q7 5 14 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-happy" d="M51 57 q9 11 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-angry" d="M51 63 q9 -7 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M32 32 q28 -22 56 0 z" fill="#DA291C"/>
+  <rect x="24" y="30" width="72" height="7" rx="3.5" fill="#DA291C"/>
+  <text x="60" y="27" text-anchor="middle" font-size="14" font-weight="800" fill="#FFC72C">M</text>
+</svg>
+<div class="name">麦叔叔</div><div class="role">店长·仲裁</div></div>
+<div class="actor" data-id="thief" data-mood="idle">
+<svg class="avatar" viewBox="0 0 120 148" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-thief" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D9CCFF" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#7B5BFF" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="138" rx="30" ry="5.5" fill="#000" opacity="0.22"/>
+  <rect x="31" y="70" width="58" height="62" rx="24" fill="url(#g-thief)"/>
+  <rect x="36" y="41" width="48" height="9" rx="4.5" fill="#2B2B33" opacity=".88"/><circle cx="49" cy="45.5" r="3.4" fill="#D9CCFF"/><circle cx="71" cy="45.5" r="3.4" fill="#D9CCFF"/>
+  <circle cx="60" cy="48" r="29" fill="#FFE3C2"/>
+  <circle cx="49" cy="47" r="4" fill="#20140f"/>
+  <circle cx="71" cy="47" r="4" fill="#20140f"/>
+  <path class="mouth m-idle" d="M53 60 q7 5 14 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-happy" d="M51 57 q9 11 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-angry" d="M51 63 q9 -7 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M32 32 q28 -22 56 0 z" fill="#7B5BFF"/>
+  <rect x="24" y="30" width="72" height="7" rx="3.5" fill="#7B5BFF"/>
+  <text x="60" y="27" text-anchor="middle" font-size="14" font-weight="800" fill="#D9CCFF">¥</text>
+</svg>
+<div class="name">汉堡神偷</div><div class="role">券猎人</div></div>
+<div class="actor" data-id="shake" data-mood="idle">
+<svg class="avatar" viewBox="0 0 120 148" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-shake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD9E7" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#FF7BAC" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="138" rx="30" ry="5.5" fill="#000" opacity="0.22"/>
+  <rect x="31" y="70" width="58" height="62" rx="24" fill="url(#g-shake)"/>
+  <line x1="72" y1="14" x2="82" y2="40" stroke="#FF7BAC" stroke-width="4" stroke-linecap="round"/><rect x="46" y="76" width="28" height="9" rx="4" fill="#fff" opacity=".38"/>
+  <circle cx="60" cy="48" r="29" fill="#FFE3C2"/>
+  <circle cx="49" cy="47" r="4" fill="#20140f"/>
+  <circle cx="71" cy="47" r="4" fill="#20140f"/>
+  <path class="mouth m-idle" d="M53 60 q7 5 14 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-happy" d="M51 57 q9 11 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-angry" d="M51 63 q9 -7 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M32 32 q28 -22 56 0 z" fill="#FF7BAC"/>
+  <rect x="24" y="30" width="72" height="7" rx="3.5" fill="#FF7BAC"/>
+  <text x="60" y="27" text-anchor="middle" font-size="14" font-weight="800" fill="#FFD9E7">杯</text>
+</svg>
+<div class="name">奶昔大哥</div><div class="role">饱腹派</div></div>
+<div class="actor" data-id="fly" data-mood="idle">
+<svg class="avatar" viewBox="0 0 120 148" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-fly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C9F2DD" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#2FB673" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="138" rx="30" ry="5.5" fill="#000" opacity="0.22"/>
+  <rect x="31" y="70" width="58" height="62" rx="24" fill="url(#g-fly)"/>
+  <path d="M36 72 q24 11 48 0 l0 9 q-24 10 -48 0 z" fill="#2FB673" opacity=".95"/><path d="M84 78 l10 14 -12 -4 z" fill="#2FB673" opacity=".95"/>
+  <circle cx="60" cy="48" r="29" fill="#FFE3C2"/>
+  <circle cx="49" cy="47" r="4" fill="#20140f"/>
+  <circle cx="71" cy="47" r="4" fill="#20140f"/>
+  <path class="mouth m-idle" d="M53 60 q7 5 14 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-happy" d="M51 57 q9 11 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-angry" d="M51 63 q9 -7 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M32 32 q28 -22 56 0 z" fill="#2FB673"/>
+  <rect x="24" y="30" width="72" height="7" rx="3.5" fill="#2FB673"/>
+  <text x="60" y="27" text-anchor="middle" font-size="14" font-weight="800" fill="#C9F2DD">★</text>
+</svg>
+<div class="name">小飞飞</div><div class="role">健康监督</div></div>
+<div class="actor" data-id="score" data-mood="idle">
+<svg class="avatar" viewBox="0 0 120 148" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-score" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFC72C" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#2B2B33" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="138" rx="30" ry="5.5" fill="#000" opacity="0.22"/>
+  <rect x="31" y="70" width="58" height="62" rx="24" fill="url(#g-score)"/>
+  <rect x="43" y="80" width="34" height="21" rx="4" fill="#12121a" stroke="#FFC72C" stroke-width="2"/><text x="60" y="95" text-anchor="middle" font-size="12" fill="#FFC72C" font-weight="800">AAA</text>
+  <circle cx="60" cy="48" r="29" fill="#E8E8EE"/>
+  <circle cx="49" cy="47" r="4" fill="#20140f"/>
+  <circle cx="71" cy="47" r="4" fill="#20140f"/>
+  <path class="mouth m-idle" d="M53 60 q7 5 14 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-happy" d="M51 57 q9 11 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path class="mouth m-angry" d="M51 63 q9 -7 18 0" stroke="#20140f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M32 32 q28 -22 56 0 z" fill="#2B2B33"/>
+  <rect x="24" y="30" width="72" height="7" rx="3.5" fill="#2B2B33"/>
+  <text x="60" y="27" text-anchor="middle" font-size="14" font-weight="800" fill="#FFC72C">分</text>
+</svg>
+<div class="name">麦险分先生</div><div class="role">风控裁判</div></div>
+    </div>
+    <div class="bubble" id="bubble">
+      <span class="who" id="who">准备开场</span>
+      <span id="text">点「开吵」，五个人会为了你这一单当场吵起来。<span class="cursor"></span></span>
+    </div>
+    <div class="log" id="log"></div>
+    <div class="verdict" id="verdict">
+      <h3>Final Call · 全场通过</h3>
+      <div class="pick" id="v-pick"></div>
+      <div class="grid" id="v-grid"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="primary" id="btn-play">开吵 ▶</button>
+    <button id="btn-speed">速度 1.0×</button>
+    <button id="btn-reset">重来</button>
+    <div class="hint">空格键 = 开吵 / 暂停　·　数据来自你的券包、麦险分与营养表</div>
+  </div>
+</div>
+
+<script>
+const SCRIPT = [{"who": "shake", "beat": "开场", "text": "我饿了。真的饿了。午餐就得吃点扛饿的，别跟我讲什么热量。", "mood": "happy"}, {"who": "fly", "beat": "健康", "text": "等一下。午餐是一天里最容易吃超的一餐，先看数字再下单。", "mood": "angry"}, {"who": "thief", "beat": "券", "text": "我这儿还压着一张「11.9元麦辣鸡腿堡」，不用过期作废！", "mood": "happy"}, {"who": "uncle", "beat": "报价", "text": "都别急。麦友，预算 ¥40.0，麦险分 771 分（巨无霸级），单笔额度 ¥120，我按这个来裁。", "mood": "angry"}, {"who": "fly", "beat": "健康", "text": "「芝士安格斯厚牛堡」696 kcal。一顿吃掉一天四分之一的能量，午饭后面还有下午，你确定？", "mood": "angry"}, {"who": "shake", "beat": "开场", "text": "但它扛饿啊！两小时后又饿的人不是你。", "mood": "happy"}, {"who": "thief", "beat": "券", "text": "「人气超值四件套随心选」¥28.0，是这批里最便宜的，配上券还能再砍一刀。", "mood": "happy"}, {"who": "fly", "beat": "健康", "text": "便宜不等于合适。「“苹”水相“鱼”套餐」健康分 91，是这一桌里最高的，蛋白结构也最稳。", "mood": "angry"}, {"who": "thief", "beat": "报价", "text": "等等。按每 100 kcal 算，「“苹”水相“鱼”套餐」要 ¥8.7，是这桌里最贵的一个。", "mood": "angry"}, {"who": "uncle", "beat": "报价", "text": "因为你买的是营养密度，不是热量密度。把肚子填满很便宜，把身体喂好从来不便宜。", "mood": "angry"}, {"who": "thief", "beat": "券", "text": "……这句我记到账本上了。", "mood": "happy"}, {"who": "score", "beat": "裁决", "text": "风控意见：麦险分 771，巨无霸级。这一单 ¥36.0 占额度 30.0%，属于秒批。", "mood": "idle"}, {"who": "fly", "beat": "通过", "text": "健康分 91，在这一档里算干净的。行吧，我勉强同意，但下次把饮料锁定成无糖，我就彻底没意见。", "mood": "happy"}, {"who": "shake", "beat": "通过", "text": "成交！我就知道饿着肚子的人最有说服力。", "mood": "happy"}, {"who": "uncle", "beat": "通过", "text": "那就这么定：“苹”水相“鱼”套餐，¥36.0。麦友，这单我批了，去取餐吧。", "mood": "happy"}];
+const SUMMARY = {"winner": {"name": "“苹”水相“鱼”套餐", "price": "36.0"}, "facts": [{"label": "能量", "value": "412 kcal"}, {"label": "健康分", "value": "91 / 100"}, {"label": "相对原价", "value": "省 ¥6.5"}, {"label": "麦险分", "value": "771（巨无霸级）"}], "colorOf": {"uncle": "#B4170F", "thief": "#5B3FD6", "shake": "#C2417A", "fly": "#1E7A4C", "score": "#1F1F26"}, "accentOf": {"uncle": "#FFC72C", "thief": "#D9CCFF", "shake": "#FFD9E7", "fly": "#C9F2DD", "score": "#FFC72C"}};
+
+const NAMES = {};
+document.querySelectorAll(".actor").forEach(el => {
+  NAMES[el.dataset.id] = el.querySelector(".name").textContent;
+  el.dataset.base = el.querySelector(".name").textContent;
+});
+
+const bubble = document.getElementById("bubble");
+const whoEl = document.getElementById("who");
+const textEl = document.getElementById("text");
+const logEl = document.getElementById("log");
+const verdict = document.getElementById("verdict");
+const stage = document.getElementById("stage");
+const btnPlay = document.getElementById("btn-play");
+const btnSpeed = document.getElementById("btn-speed");
+
+let idx = 0, playing = false, timer = null, speed = 1.0, typer = null;
+
+function activate(id, mood){
+  document.querySelectorAll(".actor").forEach(el=>{
+    const on = el.dataset.id === id;
+    el.classList.toggle("on", on);
+    el.dataset.mood = on ? (mood || "idle") : "idle";
+  });
+  const talking = !!id;
+  bubble.classList.toggle("talking", talking);
+  if(!talking) return;
+  // 让气泡尖角跟着说话的人走
+  const el = document.querySelector('.actor[data-id="' + id + '"]');
+  if(!el) return;
+  const b = bubble.getBoundingClientRect(), r = el.getBoundingClientRect();
+  const x = r.left + r.width / 2 - b.left;
+  bubble.style.setProperty("--tail", Math.max(26, Math.min(b.width - 26, x)) + "px");
+}
+
+function typeLine(line, done){
+  const chars = Array.from(line.text);
+  let i = 0;
+  const tag = NAMES[line.who] || line.who;
+  whoEl.textContent = tag;
+  whoEl.style.color = SUMMARY.colorOf[line.who] || "#DA291C";
+  textEl.innerHTML = "";
+  clearInterval(typer);
+  typer = setInterval(()=>{
+    i += 1;
+    textEl.innerHTML = chars.slice(0, i).join("") + '<span class="cursor"></span>';
+    if(i >= chars.length){
+      clearInterval(typer);
+      textEl.innerHTML = chars.join("");
+      done && done();
+    }
+  }, Math.max(16, 42 / speed));
+}
+
+function pushLog(line){
+  const row = document.createElement("div");
+  row.className = "row";
+  const b = document.createElement("b");
+  b.textContent = NAMES[line.who] || line.who;
+  b.style.color = SUMMARY.accentOf[line.who] || "#FFC72C";
+  row.appendChild(b);
+  row.appendChild(document.createTextNode(line.text));
+  logEl.appendChild(row);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function step(){
+  if(idx >= SCRIPT.length){ finish(); return; }
+  const line = SCRIPT[idx];
+  activate(line.who, line.mood);
+  typeLine(line, ()=>{
+    pushLog(line);
+    idx += 1;
+    if(idx < SCRIPT.length){
+      timer = setTimeout(step, 320 / speed);
+    } else {
+      timer = setTimeout(finish, 500 / speed);
+    }
+  });
+}
+
+function start(){
+  reset();
+  playing = true;
+  btnPlay.textContent = "暂停 ⏸";
+  step();
+}
+
+function pause(){
+  playing = false;
+  clearTimeout(timer); clearInterval(typer);
+  btnPlay.textContent = "继续 ▶";
+}
+
+function reset(){
+  clearTimeout(timer); clearInterval(typer);
+  idx = 0; playing = false;
+  logEl.innerHTML = "";
+  verdict.classList.remove("show");
+  textEl.innerHTML = '点「开吵」，五个人会为了你这一单当场吵起来。<span class="cursor"></span>';
+  whoEl.textContent = "准备开场";
+  activate(null, "idle");
+  btnPlay.textContent = "开吵 ▶";
+}
+
+function finish(){
+  playing = false;
+  btnPlay.textContent = "再来一遍 ▶";
+  activate(null, "idle");
+  if(!SUMMARY.winner || !SUMMARY.winner.name) return;
+  document.getElementById("v-pick").textContent = SUMMARY.winner.name + "　¥" + SUMMARY.winner.price;
+  const grid = document.getElementById("v-grid");
+  grid.innerHTML = "";
+  (SUMMARY.facts || []).forEach(f=>{
+    const d = document.createElement("div");
+    d.innerHTML = "<span>" + f.label + "</span>" + f.value;
+    grid.appendChild(d);
+  });
+  verdict.classList.add("show");
+  confetti();
+}
+
+function confetti(){
+  const colors = ["#DA291C","#FFC72C","#ffffff","#7B5BFF"];
+  for(let i=0;i<26;i++){
+    const c = document.createElement("i");
+    c.className = "confetti";
+    c.style.left = (8 + Math.random()*84) + "%";
+    c.style.top = "-12px";
+    c.style.background = colors[i % colors.length];
+    c.style.animationDelay = (Math.random()*0.5) + "s";
+    stage.appendChild(c);
+    setTimeout(()=>c.remove(), 2400);
+  }
+}
+
+btnPlay.addEventListener("click", ()=>{
+  if(playing){ pause(); }
+  else if(idx >= SCRIPT.length){ start(); }
+  else { playing = true; btnPlay.textContent = "暂停 ⏸"; step(); }
+});
+document.getElementById("btn-reset").addEventListener("click", reset);
+btnSpeed.addEventListener("click", ()=>{
+  speed = speed >= 2.4 ? 1.0 : Math.min(2.4, speed + 0.7);
+  btnSpeed.textContent = "速度 " + speed.toFixed(1) + "×";
+});
+document.addEventListener("keydown", e=>{
+  if(e.code === "Space"){ e.preventDefault(); btnPlay.click(); }
+});
+
+setTimeout(()=>{ if(idx === 0) start(); }, 700);
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "code": 200,
+  "message": "请求成功",
+  "datetime": "2026-10-24 12:09:45",
+  "data": {
+    "productOriginalPrice": 7300,
+    "productPrice": 7300,
+    "originalPrice": 7300,
+    "discount": 0,
+    "price": 7300,
+    "productList": [
+      {"productCode": "9900005466", "productName": "巨无霸三件套", "quantity": 2, "originalSubtotal": 7300, "subtotal": 7300}
+    ],
+    "takeWayList": [
+      {"code": "eat-in", "title": "堂食", "subtitle": "店内用餐"},
+      {"code": "take-in-store", "title": "外带", "subtitle": "店内自提"}
+    ]
+  }
+}
