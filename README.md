@@ -6,6 +6,9 @@
 参赛：麦当劳程序员节创意开发大赛 · 开发 Skill 赛道
 MCP：`https://mcp.mcd.cn`（Streamable HTTP）
 
+**在线体验小剧场** → https://jouaaaaaa.github.io/mcd-self-butler/demo/theater.html
+**仓库** → https://github.com/jouaaaaaa/mcd-self-butler
+
 ![麦门小剧场](docs/theater.png)
 
 ---
